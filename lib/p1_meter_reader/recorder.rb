@@ -19,15 +19,5 @@ module P1MeterReader
 
     protected
     attr_accessor :measurement_parser, :measurement_source
-
-    private
-    def serial_port
-      serial_port = SerialPort.new("/dev/ttyUSB0", 9600)
-      serial_port.data_bits = 7
-      serial_port.stop_bits = 1
-      serial_port.parity = SerialPort::EVEN
-
-      serial_port
-    end
   end
 end
