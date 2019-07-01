@@ -26,19 +26,19 @@ describe P1MeterReader::DataParsing::ParseChain::StroomPiekChain do
     it "sets the correct amount in :stroom_piek" do
       subject.handle(lines, output)
 
-      output.stroom_piek.should == kWh(557.379)
+      expect(output.stroom_piek).to eq(kWh(557.379))
     end
 
     it "notes the previous value" do
       subject.handle(lines, output)
 
-      subject.last_value.should == kWh(557.379)
+      expect(subject.last_value).to eq(kWh(557.379))
     end
 
     it "advances the enumerator" do
       subject.handle(lines, output)
 
-      lines.next.should == next_line
+      expect(lines.next).to eq(next_line)
     end
   end
 end

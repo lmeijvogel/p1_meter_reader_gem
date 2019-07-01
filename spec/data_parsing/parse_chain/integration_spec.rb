@@ -23,7 +23,7 @@ describe P1MeterReader::DataParsing::ParseChain::Chainable do
       let(:lines) { [ "true jaja" ].to_enum }
 
       it "handles them" do
-        subject.try(lines, output).should == true
+        expect(subject.try(lines, output)).to be_truthy
       end
     end
 
@@ -37,7 +37,7 @@ describe P1MeterReader::DataParsing::ParseChain::Chainable do
       end
 
       it "passes it to the next in the chain" do
-        next_chainable.should_receive(:try).with(lines, output)
+        expect(next_chainable).to receive(:try).with(lines, output)
 
         subject.try(lines, output)
       end

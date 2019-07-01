@@ -9,8 +9,8 @@ describe P1MeterReader::DataParsing::StreamSplitter do
   describe :read do
     context "when there are messages" do
       it "returns them" do
-        subject.read.should == message_1
-        subject.read.should == message_2
+        expect(subject.read).to eq(message_1)
+        expect(subject.read).to eq(message_2)
       end
     end
   end

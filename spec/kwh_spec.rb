@@ -41,7 +41,7 @@ describe :kWh do
       it "raises an error" do
         expect {
           kWh(12) - 10
-        }.to raise_error
+        }.to raise_error(StandardError)
       end
     end
 

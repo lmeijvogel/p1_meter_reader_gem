@@ -26,12 +26,12 @@ describe P1MeterReader::DataParsing::ParseChain::GasChain do
 
     it "sets :gas to the correct value" do
       subject.handle(lines, output)
-      output.gas.should == 742.914
+      expect(output.gas).to eq(742.914)
     end
 
     it "moves the enumerator to the next line" do
       subject.handle(lines, output)
-      lines.next.should == next_line
+      expect(lines.next).to eq(next_line)
     end
   end
 end

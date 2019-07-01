@@ -27,13 +27,13 @@ describe P1MeterReader::DataParsing::ParseChain::StroomCurrentChain do
     it "sets the correct amount in :stroom_current" do
       subject.handle(lines, output)
 
-      output.stroom_current.should == 0.379
+      expect(output.stroom_current).to eq(0.379)
     end
 
     it "advances the enumerator" do
       subject.handle(lines, output)
 
-      lines.next.should == next_line
+      expect(lines.next).to eq(next_line)
     end
   end
 end

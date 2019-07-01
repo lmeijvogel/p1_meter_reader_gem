@@ -38,22 +38,23 @@ INPUT
     subject { P1MeterReader::Models::MeasurementParser.new.parse(input) }
 
     it "has the correct time_stamp" do
-      subject.time_stamp.should == DateTime.now
+      expect(subject.time_stamp).to eq(DateTime.now)
     end
 
     it "has the correct stroom_dal" do
-      subject.stroom_dal.should == kWh(557.379)
+      expect(subject.stroom_dal).to eq(kWh(557.379))
     end
 
     it "has the correct stroom_piek" do
-      subject.stroom_piek.should == kWh(610.251)
+      expect(subject.stroom_piek).to eq(kWh(610.251))
     end
 
     it "has the correct stroom_current" do
-      subject.stroom_current.should == 0.69
+      expect(subject.stroom_current).to eq(0.69)
     end
+
     it "has the correct gas" do
-      subject.gas.should == 742.914
+      expect(subject.gas).to eq(742.914)
     end
   end
 end
