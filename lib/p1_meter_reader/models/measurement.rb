@@ -2,7 +2,6 @@ module P1MeterReader
   module Models
     class Measurement
       attr_accessor :time_stamp, :time_stamp_utc, :stroom_dal, :stroom_piek, :stroom_current, :gas
-      attr_accessor :diff_stroom_dal, :diff_stroom_piek, :diff_gas
 
       def time_stamp_current_minute
         self.time_stamp.strftime("%d-%m-%y %H:%M")

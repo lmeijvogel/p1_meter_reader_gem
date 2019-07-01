@@ -24,7 +24,6 @@ module P1MeterReader
 
           if value
             output.stroom_dal = value
-            output.diff_stroom_dal = value - last_value
 
             self.last_value = value
           end

@@ -21,7 +21,6 @@ module P1MeterReader
 
           value = KwhReader.read(line)
           output.stroom_piek = value
-          output.diff_stroom_piek = value - last_value
 
           self.last_value = value
         end

@@ -36,14 +36,6 @@ describe P1MeterReader::DataParsing::ParseChain::StroomDalChain do
       subject.last_value.should == kWh(557.379)
     end
 
-    it "stores the difference from the last value" do
-      subject.last_value = kWh(557.370)
-
-      subject.handle(lines, output)
-
-      output.diff_stroom_dal.should == kWh(0.009)
-    end
-
     it "advances the enumerator" do
       subject.handle(lines, output)
 
