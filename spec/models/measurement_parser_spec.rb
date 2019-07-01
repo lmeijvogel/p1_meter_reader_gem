@@ -37,10 +37,23 @@ INPUT
 
     subject { P1MeterReader::Models::MeasurementParser.new.parse(input) }
 
-    its(:time_stamp)  { should == DateTime.now }
-    its(:stroom_dal)  { should == kWh(557.379) }
-    its(:stroom_piek) { should == kWh(610.251) }
-    its(:stroom_current) { should == 0.69 }
-    its(:gas)         { should == 742.914 }
+    it "has the correct time_stamp" do
+      subject.time_stamp.should == DateTime.now
+    end
+
+    it "has the correct stroom_dal" do
+      subject.stroom_dal.should == kWh(557.379)
+    end
+
+    it "has the correct stroom_piek" do
+      subject.stroom_piek.should == kWh(610.251)
+    end
+
+    it "has the correct stroom_current" do
+      subject.stroom_current.should == 0.69
+    end
+    it "has the correct gas" do
+      subject.gas.should == 742.914
+    end
   end
 end

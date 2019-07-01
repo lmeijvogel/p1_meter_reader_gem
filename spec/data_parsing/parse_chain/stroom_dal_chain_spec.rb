@@ -18,6 +18,8 @@ describe P1MeterReader::DataParsing::ParseChain::StroomDalChain do
   end
 
   describe :handle do
+    subject { P1MeterReader::DataParsing::ParseChain::StroomDalChain.new }
+
     let(:output) { P1MeterReader::Models::Measurement.new }
     let(:next_line) { "next line" }
     let(:lines) { ["1-0:1.8.1(00557.379*kWh)", next_line].to_enum }

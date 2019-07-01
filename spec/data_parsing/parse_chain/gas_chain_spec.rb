@@ -17,6 +17,8 @@ describe P1MeterReader::DataParsing::ParseChain::GasChain do
   end
 
   describe :handle do
+    subject { P1MeterReader::DataParsing::ParseChain::GasChain.new }
+
     let(:next_line) { "The next line" }
     let(:lines) { ['0-1:24.3.0(140228200000)(24)(60)(1)(0-1:24.2.0)(m3)', '(00742.914)', next_line].to_enum }
 

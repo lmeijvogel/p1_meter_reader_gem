@@ -4,7 +4,7 @@ describe P1MeterReader::DataParsing::StreamSplitter do
   let(:io) { StringIO.new(example_data) }
   let(:message_start) { "/XMX5XMXABCE100129872" }
 
-  subject { P1MeterReader::DataParsing::StreamSplitter.new(io, message_start) }
+  subject { P1MeterReader::DataParsing::StreamSplitter.new(message_start, input: io) }
 
   describe :read do
     context "when there are messages" do

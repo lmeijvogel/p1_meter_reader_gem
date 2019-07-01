@@ -18,14 +18,14 @@ describe :kWh do
   describe :== do
     context "when the other value is a Float" do
       it "returns false" do
-        expect(kWh(12) == 10).to be_false
+        expect(kWh(12) == 10).to be_falsy
       end
     end
 
     context "when the other value is a kWh" do
       it "works correctly" do
-        expect(kWh(12) == kWh(12)).to be_true
-        expect(kWh(12) == kWh(13)).to be_false
+        expect(kWh(12) == kWh(12)).to be_truthy
+        expect(kWh(12) == kWh(13)).to be_falsy
       end
     end
   end
