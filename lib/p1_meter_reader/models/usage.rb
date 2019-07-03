@@ -7,7 +7,8 @@ module P1MeterReader
         {
           time_stamp: time_stamp,
           stroom_totaal: stroom_totaal,
-          gas: gas
+          gas: gas,
+          water: water
         }.to_json(j)
       end
     end
