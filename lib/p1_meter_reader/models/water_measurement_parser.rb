@@ -14,13 +14,14 @@ module P1MeterReader
       def parse(message)
         message = message.strip
 
-        if message == "USAGE"
+        if message =~ /USAGE/
           self.last_measurement += 0.0001
 
           backup_if_necessary
         end
 
-        # Return the current message by default, even if it's not updated
+        # Return the current measurement by default, even if it's not updated:
+        # The water usage is the same as before.
         self.last_measurement
       end
 
