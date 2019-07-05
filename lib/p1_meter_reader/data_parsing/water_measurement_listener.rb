@@ -8,11 +8,9 @@ module P1MeterReader
       end
 
       def read
-        loop do
-          line = @stream.next
+        line = @stream.next
 
-          return line.strip
-        end
+        line.strip
       end
 
       private
