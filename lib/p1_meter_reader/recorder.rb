@@ -12,29 +12,33 @@ module P1MeterReader
 
     def collect_data(&block)
       loop do
-        water_message = nil
-        water_value = nil
-
-        begin
-          # Keep parsing water messages since they occur much more frequently than p1 messages,
-          # Parsing the message also updates the internal water_measurement_parser values
-          water_message = water_data_source&.read
-
-          if water_message
-            water_value = water_measurement_parser.parse(water_message)
-          end
-        end while !p1_data_source.ready?
-
-        p1_message = p1_data_source.read
-
-        measurement = measurement_parser.parse(p1_message)
-
-        if water_value
-          measurement.water = water_value
-        end
-
-        block.yield measurement
+        collect_measurement(&block)
       end
+    end
+
+    def collect_measurement(&block)
+      water_message = nil
+      water_value = nil
+
+      begin
+        # Keep parsing water messages since they occur much more frequently than p1 messages,
+        # Parsing the message also updates the internal water_measurement_parser values
+        water_message = water_data_source&.read
+
+        if water_message
+          water_value = water_measurement_parser.parse(water_message)
+        end
+      end while !p1_data_source.ready?
+
+      p1_message = p1_data_source.read
+
+      measurement = measurement_parser.parse(p1_message)
+
+      if water_value
+        measurement.water = water_value
+      end
+
+      block.yield measurement
     end
 
     protected
