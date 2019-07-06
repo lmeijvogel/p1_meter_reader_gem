@@ -44,7 +44,7 @@ module P1MeterReader
       # We store the current state to file because we only receive increments from the water sensor,
       # as opposed to absolute numbers from the p1 interface.
       def init_from_file
-        if File.exist?(@storage_filename)
+        if ENV["ENVIRONMENT"] == "production" && File.exist?(@storage_filename)
           content = YAML.safe_load(File.read(@storage_filename))
 
           self.last_measurement = content["last_measurement"].to_f
@@ -54,6 +54,8 @@ module P1MeterReader
       end
 
       def to_file
+        return if ENV["ENVIRONMENT"] != "production"
+
         File.open(@storage_filename, "w") do |file|
           yaml = {
             "last_measurement" => self.last_measurement
