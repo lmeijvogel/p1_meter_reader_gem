@@ -26,6 +26,10 @@ module P1MeterReader
         RECORD
       end
 
+      def ready?
+        true
+      end
+
       def read
         sleep 1
         return record
