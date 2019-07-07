@@ -15,7 +15,7 @@ module P1MeterReader
         message = message.strip
 
         if message =~ /USAGE/
-          self.last_measurement += 0.0001
+          self.last_measurement += 1
 
           backup_if_necessary
         end

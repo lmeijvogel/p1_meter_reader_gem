@@ -37,7 +37,7 @@ describe P1MeterReader::Recorder do
 
     subject.collect_measurement do |measurement|
       expect(measurement.stroom_piek).to eq(Kwh.new(611.553))
-      expect(measurement.water).to be_within(0.0001).of(0.0004)
+      expect(measurement.water).to eq 4
     end
   end
 end
