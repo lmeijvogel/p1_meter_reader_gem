@@ -3,9 +3,9 @@ require "p1_meter_reader/models/water_measurement_parser"
 
 module P1MeterReader
   class Recorder
-    def initialize(p1_data_source:, water_data_source: nil)
+    def initialize(p1_data_source:, water_data_source: nil, water_measurement_parser: nil)
       self.measurement_parser = Models::MeasurementParser.new
-      self.water_measurement_parser = Models::WaterMeasurementParser.new
+      self.water_measurement_parser = water_measurement_parser
       self.p1_data_source = p1_data_source
       self.water_data_source = water_data_source
     end
@@ -26,7 +26,7 @@ module P1MeterReader
         water_message = water_data_source&.read
 
         if water_message
-          water_value = water_measurement_parser.parse(water_message)
+          water_value = water_measurement_parser&.parse(water_message)
         end
       end while !p1_data_source.ready?
 

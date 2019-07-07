@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'p1_meter_reader/recorder'
-
+require 'p1_meter_reader/models/water_measurement_parser'
 
 class MockP1Source
   def initialize(number_of_inactive_cycles:)
@@ -33,7 +33,9 @@ describe P1MeterReader::Recorder do
     mock_p1_source = MockP1Source.new(number_of_inactive_cycles: 4)
     mock_water_source = MockWaterSource.new
 
-    subject = P1MeterReader::Recorder.new(p1_data_source: mock_p1_source, water_data_source: mock_water_source)
+    water_measurement_parser = P1MeterReader::Models::WaterMeasurementParser.new(0)
+
+    subject = P1MeterReader::Recorder.new(p1_data_source: mock_p1_source, water_data_source: mock_water_source, water_measurement_parser: water_measurement_parser)
 
     subject.collect_measurement do |measurement|
       expect(measurement.stroom_piek).to eq(Kwh.new(611.553))
