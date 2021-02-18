@@ -18,7 +18,7 @@ module P1MeterReader
           line = @stream.readline
           result << line
 
-          return result if line.strip == "!"
+          return result if line.strip.start_with?("!")
         end
       end
 
