@@ -1,9 +1,7 @@
-require 'serialport'
-
 module P1MeterReader
   module DataParsing
     class StreamSplitter
-      def initialize(message_start, input: serial_port)
+      def initialize(message_start, input:)
         @message_start = message_start
         @stream = input.each_line
       end
@@ -23,15 +21,6 @@ module P1MeterReader
         end
       end
 
-      private
-      def serial_port
-        serial_port = SerialPort.new("/dev/ttyUSB0", 115200)
-        serial_port.data_bits = 7
-        serial_port.stop_bits = 1
-        serial_port.parity = SerialPort::EVEN
-
-        serial_port
-      end
     end
   end
 end
