@@ -19,13 +19,13 @@ module P1MeterReader
           line = @stream.next
           result << line
 
-          return result if line.strip == "!"
+          return result if line.strip.start_with?("!")
         end
       end
 
       private
       def serial_port
-        serial_port = SerialPort.new("/dev/ttyUSB0", 9600)
+        serial_port = SerialPort.new("/dev/ttyUSB0", 115200)
         serial_port.data_bits = 7
         serial_port.stop_bits = 1
         serial_port.parity = SerialPort::EVEN
