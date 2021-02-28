@@ -3,8 +3,11 @@ require 'yaml'
 module P1MeterReader
   module Models
     class WaterMeasurementParser
+      attr_accessor :on_tick
+
       def initialize(last_measurement)
         @last_measurement = last_measurement
+        self.on_tick = ->() {}
       end
 
       def parse(message)
@@ -12,6 +15,8 @@ module P1MeterReader
 
         if message =~ /USAGE/
           self.last_measurement += 1
+
+          self.on_tick.call
         end
 
         # Return the current measurement by default, even if it's not updated:
